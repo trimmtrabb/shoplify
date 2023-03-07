@@ -1,0 +1,18 @@
+databases:
+  - name: shoplify
+    databaseName: shoplify_wptz
+    user: shoplify
+
+services:
+  - type: web
+    name: shoplify
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: postgres://shoplify:31uziosRx3yLedOYxWUln952BOQ6OErm@dpg-cg3lia9mbg5fch5qs2cg-a/shoplify_wptz
+        fromDatabase:
+          name: shoplify
+          property: connectionString
+      - key: fc7432925425d3412f3e01482389570b
+        sync: false
