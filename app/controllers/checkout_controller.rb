@@ -3,14 +3,10 @@ class CheckoutController < ApplicationController
     product = Product.find(params[:id])
     @session = Stripe::Checkout::Session.create({
       payment_method_types: ['card'],
-      line_items: [
-        price_data: {
-          product: product.stripe_product_id,
-          unit_amount: product.price * 100,
-          currency: 'usd'
-        },
+      line_items: [{
+        price: product.stripe_price_id,
         quantity: 1,
-      ],
+      }],
       mode: 'payment',
       success_url: root_url,
       cancel_url: root_url
