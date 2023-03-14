@@ -18,15 +18,10 @@ class CheckoutController < ApplicationController
   end
 
   def success
-    if params[:session_id].present?
-      @session_with_expand = Stripe::Checkout::Session.retrieve({
-        id: params[:session_id],
-        expand: ["line_items"] })
-      @session_with_expand.line_items.data.each do |line_item|
-        product = Product.find_by(stripe_product_id: line_item.price.product)
-      end
-    else
-      redirect_to cancel_url, alert: "No info to display"
+    session_with_expand = Stripe::Checkout::Session.retrieve({id: params[:session_id], expand: ["line_items"]})
+    session_with_expand.line_items.data.each do |line_item|
+      product = Product.find_by(stripe_product_id: line_item.price.product)
+      product.increment!(:sales_count)
     end
   end
 
