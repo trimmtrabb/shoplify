@@ -23,7 +23,8 @@
         <td><%= product.stripe_product_id %></td>
         <td><%= product.stripe_price_id %></td>
         <td>
-          <%= button_to 'Buy now!', checkout_path, params: { id: product.id }, remote: true %>
+          <%= button_to 'Buy now!', checkout_path, params: { id: product.id }, remote: true, \
+              disable_with: 'validating...' %>
         </td>
         <td><%= product.sales_count %>
         <td><%= link_to 'Show', product %></td>
