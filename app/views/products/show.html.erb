@@ -8,7 +8,9 @@
 <p>
   <strong>Price:</strong>
   <%= @product.price %>
+  <%= @product.currency.upcase %>
 </p>
+
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

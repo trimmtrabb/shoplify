@@ -17,6 +17,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :currency %>
+    <%= form.select :currency, options_for_select(Product.currencies.keys, product.currency) %>
+  </div>
+
+  <div class="field">
     <%= form.label :price %>
     <%= form.number_field :price %>
   </div>
