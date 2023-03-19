@@ -7,6 +7,7 @@ ruby '3.0.5'
 gem 'rails', '~> 6.1.7'
 gem 'stripe'
 gem 'devise'
+gem 'money-rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Use Puma as the app server

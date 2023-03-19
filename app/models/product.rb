@@ -3,6 +3,8 @@ class Product < ApplicationRecord
 
   validates :name, :price, presence: true
 
+  monetize :price, as: :price_cents
+
   after_create do
     product = Stripe::Product.create(name: name)
     price = Stripe::Price.create(product: product, unit_amount: self.price,
